@@ -4269,6 +4269,9 @@ namespace MissionPlanner.GCSViews
 
         private void button4_Click(object sender, EventArgs e)
         {
+
+            webBrowser1.Navigate("http://ahsatan.com/tanvir_space/drone.html");
+
             MySql.Data.MySqlClient.MySqlConnection conn;
             string myConnectionString;
 
@@ -4371,6 +4374,41 @@ namespace MissionPlanner.GCSViews
             {
                 MessageBox.Show(ex.Message);
             }
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string comb = comboBox1.Text;
+            if (string.Compare(comb, "Normal Map") == 0)
+            {
+
+                webBrowser1.Navigate("http://ahsatan.com/tanvir_space/main.html");
+               
+            }
+
+            else if (string.Compare(comb, "Satellite Map") == 0)
+            {
+
+
+                webBrowser1.Navigate("http://ahsatan.com/tanvir_space/main_sattelite.html");
+
+
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("http://ahsatan.com/tanvir_space/elevation.html");
+        }
+
+        private void txt_messagebox_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void quickView1_Load(object sender, EventArgs e)
+        {
 
         }
     }
