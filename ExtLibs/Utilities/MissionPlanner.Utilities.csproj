@@ -51,6 +51,9 @@
       <HintPath>..\..\ExtLibs\log4net.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="mysql.data">
+      <HintPath>C:\Users\Klayton\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\nkl\mysql.data.dll</HintPath>
+    </Reference>
     <Reference Include="ProjNet">
       <HintPath>..\..\packages\ProjNet.1.2\lib\net20\ProjNet.dll</HintPath>
     </Reference>
