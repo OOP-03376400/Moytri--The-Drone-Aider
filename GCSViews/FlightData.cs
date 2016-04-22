@@ -4250,5 +4250,10 @@ namespace MissionPlanner.GCSViews
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("http://ahsatan.com/tanvir_space/draw_rect.html");
+        }
     }
 }
