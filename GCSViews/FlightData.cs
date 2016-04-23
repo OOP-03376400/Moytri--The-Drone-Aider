@@ -4264,7 +4264,7 @@ namespace MissionPlanner.GCSViews
 
         private void button2_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("http://ahsatan.com/tanvir_space/draw_rect.html");
+            webBrowser1.Navigate("http://ahsatan.com/tanvir_space/nofly.html");
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -4410,6 +4410,16 @@ namespace MissionPlanner.GCSViews
         private void quickView1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("http://ahsatan.com/tanvir_space/vegetation.html");
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("http://ahsatan.com/tanvir_space/tower.html");
         }
     }
 }
