@@ -33,11 +33,137 @@ using LogAnalyzer = MissionPlanner.Utilities.LogAnalyzer;
 namespace MissionPlanner.GCSViews
 {
 
+
+
    
+
 
 
     public partial class FlightData : MyUserControl, IActivate, IDeactivate
     {
+
+        public class RequestManager
+        {
+
+
+            public string GetResponseContent(HttpWebResponse response)
+            {
+                if (response == null)
+                {
+                    throw new ArgumentNullException("response");
+                }
+                Stream dataStream = null;
+                StreamReader reader = null;
+                string responseFromServer = null;
+
+                try
+                {
+                    // Get the stream containing content returned by the server.
+                    dataStream = response.GetResponseStream();
+                    // Open the stream using a StreamReader for easy access.
+                    reader = new StreamReader(dataStream);
+                    // Read the content.
+                    responseFromServer = reader.ReadToEnd();
+                    // Cleanup the streams and the response.
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    if (reader != null)
+                    {
+                        reader.Close();
+                    }
+                    if (dataStream != null)
+                    {
+                        dataStream.Close();
+                    }
+                    response.Close();
+                }
+
+                return responseFromServer;
+            }
+            internal HttpWebRequest GenerateRequest(string uri, string content, string method, bool allowAutoRedirect)
+            {
+                if (uri == null)
+                {
+                    throw new ArgumentNullException("uri");
+                }
+                // Create a request using a URL that can receive a post.
+                try
+                {
+                    HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(uri);
+
+                    // Set the Method property of the request to POST.
+                    request.Method = method;
+                    // Set cookie container to maintain cookies
+
+                    request.AllowAutoRedirect = allowAutoRedirect;
+                    // If login is empty use defaul credentials
+
+
+                    request.Credentials = CredentialCache.DefaultNetworkCredentials;
+
+                    if (method == "POST")
+                    {
+                        // Convert POST data to a byte array.
+                        byte[] byteArray = Encoding.UTF8.GetBytes(content);
+                        // Set the ContentType property of the WebRequest.
+                        request.ContentType = "application/x-www-form-urlencoded";
+                        // Set the ContentLength property of the WebRequest.
+                        request.ContentLength = byteArray.Length;
+                        // Get the request stream.
+                        Stream dataStream = request.GetRequestStream();
+                        // Write the data to the request stream.
+                        dataStream.Write(byteArray, 0, byteArray.Length);
+
+                        // Close the Stream object.
+                        dataStream.Close();
+                    }
+                    return request;
+                }
+                catch (System.UriFormatException x)
+                {
+                    Console.WriteLine("uriFormatException");
+                }
+                Console.WriteLine("here");
+
+                return null;
+            }
+
+            internal HttpWebResponse GetResponse(HttpWebRequest request)
+            {
+                if (request == null)
+                {
+                    throw new ArgumentNullException("request");
+                }
+                HttpWebResponse response = null;
+                try
+                {
+                    response = (HttpWebResponse)request.GetResponse();
+
+                }
+                catch (WebException ex)
+                {
+                    Console.WriteLine("Web exception occurred. Status code: {0}", ex.Status);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                return response;
+            }
+
+        }
+
+
+
+
+
+
+
         public List<string> lat = new List<string>();
         public List<string> lng = new List<string>();
 
@@ -4399,7 +4525,52 @@ namespace MissionPlanner.GCSViews
 
         private void button7_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("http://ahsatan.com/tanvir_space/elevation.html");
+            // webBrowser1.Navigate("http://ahsatan.com/tanvir_space/elevation.html");
+
+
+            RequestManager r = new RequestManager();
+            string uri = "http://localhost/nasa/eliv.php";
+            String lat1 = "23.684922";
+            String lng1 = "90.65555";
+            String lat2 = "23.9789";
+            String lng2 = "90.89458";
+            string content = "lat1=" + lat1 + "&lng1=" + lng1 + "&lat2=" + lat2 + "&lng2=" + lng2;
+            string method = "POST";
+
+            bool allowAutoRedirect = true;
+            HttpWebRequest request = r.GenerateRequest(uri, content, method, allowAutoRedirect);
+            if (request != null)
+            {
+                HttpWebResponse res = r.GetResponse(request);
+                String response = r.GetResponseContent(res);
+                String p1 = response.Split(',')[0];
+                String p2 = response.Split(',')[1];
+
+                /* String temp = jb.GetValue("temperature").ToString();
+                 String tempDesc = jb.GetValue("temperatureDesc").ToString();
+                 String dewPoint = jb.GetValue("dewPoint").ToString();
+                 String barometerPressure = jb.GetValue("barometerPressure").ToString();
+                 String windSpeed = jb.GetValue("windSpeed").ToString();
+                 String windDirection = jb.GetValue("windDirection").ToString();
+                 String windDesc = jb.GetValue("windDesc").ToString();
+                 String humidity = jb.GetValue("humidity").ToString();
+                 String visibility = jb.GetValue("visibility").ToString();
+                 String icon = jb.GetValue("icon").ToString();
+                 String iconName = jb.GetValue("iconName").ToString();
+                 String iconLink = jb.GetValue("iconLink").ToString();*/
+              //  Console.WriteLine(p1 + "\n" + p2);
+
+                MessageBox.Show(" " + p1 + " " + p2);
+
+
+
+
+            }
+            else
+            {
+                Console.WriteLine("habijabi");
+            }
+          //  Console.Read();
         }
 
         private void txt_messagebox_TextChanged_1(object sender, EventArgs e)
@@ -4420,6 +4591,11 @@ namespace MissionPlanner.GCSViews
         private void button8_Click(object sender, EventArgs e)
         {
             webBrowser1.Navigate("http://ahsatan.com/tanvir_space/tower.html");
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("http://ahsatan.com/tanvir_space/terrain.html");
         }
     }
 }
