@@ -179,6 +179,9 @@
     <Reference Include="mysql.data">
       <HintPath>C:\Users\Klayton\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\nkl\mysql.data.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>DLLs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="ObjectListView">
       <HintPath>packages\Unofficial.ObjectListView.2.6.0\lib\net20\ObjectListView.dll</HintPath>
     </Reference>
@@ -656,6 +659,7 @@
     <Compile Include="GCSViews\InitialSetup.Designer.cs">
       <DependentUpon>InitialSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="GCSViews\NaiveBayesProgram.cs" />
     <Compile Include="GCSViews\Simulation.cs">
       <SubType>UserControl</SubType>
     </Compile>

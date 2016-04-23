@@ -26,6 +26,8 @@ using MissionPlanner.Warnings;
 using OpenTK;
 using WebCamService;
 using ZedGraph;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using LogAnalyzer = MissionPlanner.Utilities.LogAnalyzer;
 
 // written by michael oborne
@@ -4486,11 +4488,16 @@ namespace MissionPlanner.GCSViews
 
                 double dis2 = Math.Sqrt(ldt1);
 
+                dis1 = dis1 * 100;
+                dis2 = dis2 * 100;
 
 
-                MessageBox.Show(" " + dis1 + "\n" + dis2);
 
+              //  MessageBox.Show(" " + dis1 + "\n" + dis2);
 
+                string drn = "Distance from My Drone is " + dis1 + "KiloMeter and " + dis2 + "KiloMeter";
+
+                MessageBox.Show(drn);
 
 
 
@@ -4546,21 +4553,12 @@ namespace MissionPlanner.GCSViews
                 String p1 = response.Split(',')[0];
                 String p2 = response.Split(',')[1];
 
-                /* String temp = jb.GetValue("temperature").ToString();
-                 String tempDesc = jb.GetValue("temperatureDesc").ToString();
-                 String dewPoint = jb.GetValue("dewPoint").ToString();
-                 String barometerPressure = jb.GetValue("barometerPressure").ToString();
-                 String windSpeed = jb.GetValue("windSpeed").ToString();
-                 String windDirection = jb.GetValue("windDirection").ToString();
-                 String windDesc = jb.GetValue("windDesc").ToString();
-                 String humidity = jb.GetValue("humidity").ToString();
-                 String visibility = jb.GetValue("visibility").ToString();
-                 String icon = jb.GetValue("icon").ToString();
-                 String iconName = jb.GetValue("iconName").ToString();
-                 String iconLink = jb.GetValue("iconLink").ToString();*/
-              //  Console.WriteLine(p1 + "\n" + p2);
+                
 
-                MessageBox.Show(" " + p1 + " " + p2);
+                webBrowser1.DocumentText =
+               "<html><body>The Elevation of these positions are " +
+
+               "<br> " + p1 + " " + p2 + "  </body></html>";
 
 
 
@@ -4595,7 +4593,70 @@ namespace MissionPlanner.GCSViews
 
         private void button9_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("http://ahsatan.com/tanvir_space/terrain.html");
+              webBrowser1.Navigate("http://ahsatan.com/tanvir_space/terrain.html");
+
+            
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //  webBrowser1.Navigate("http://localhost/klop/weather.html");
+
+
+              RequestManager r = new RequestManager();
+              string uri = "http://localhost/klop/getWeather.php";
+              String lat = "23";
+              String lng = "90";
+              string content = "lat=" + lat + "&lng=" + lng;
+              string method = "POST";
+
+              bool allowAutoRedirect = true;
+              HttpWebRequest request = r.GenerateRequest(uri, content, method, allowAutoRedirect);
+              if (request != null)
+              {
+                  HttpWebResponse res = r.GetResponse(request);
+                  String response = r.GetResponseContent(res);
+                  dynamic jsonObj = JsonConvert.DeserializeObject(response);
+                  JObject jb = jsonObj.observations.location[0].observation[0];
+
+                  String temp = jb.GetValue("temperature").ToString();
+                  String tempDesc = jb.GetValue("temperatureDesc").ToString();
+                  String dewPoint = jb.GetValue("dewPoint").ToString();
+                  String barometerPressure = jb.GetValue("barometerPressure").ToString();
+                  String windSpeed = jb.GetValue("windSpeed").ToString();
+                  String windDirection = jb.GetValue("windDirection").ToString();
+                  String windDesc = jb.GetValue("windDesc").ToString();
+                  String humidity = jb.GetValue("humidity").ToString();
+                  String visibility = jb.GetValue("visibility").ToString();
+                  String icon = jb.GetValue("icon").ToString();
+                  String iconName = jb.GetValue("iconName").ToString();
+                  String iconLink = jb.GetValue("iconLink").ToString();
+
+
+
+              //  NaiveBayesProgram n = new NaiveBayesProgram(1, 2, 3);
+                
+
+
+
+
+              }
+              else
+              {
+                  Console.WriteLine("habijabi");
+              }
+
+      
+
+            string str_url = Application.StartupPath + "\\weather.html";
+
+            webBrowser1.Navigate(str_url);
+
+           // MessageBox.Show(str_url);
+
+            
+
         }
     }
 }
