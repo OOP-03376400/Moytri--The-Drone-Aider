@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MissionPlanner</RootNamespace>
     <AssemblyName>MissionPlanner</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -2505,6 +2505,8 @@
     <EmbeddedResource Include="Wizard\Wizard.zh-TW.resx">
       <DependentUpon>Wizard.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Msvidctl.tlb" />
+    <None Include="Tuner.tlb" />
     <None Include="Utilities\ImageOverFilter.cs" />
     <EmbeddedResource Include="Antenna\Tracker.id-ID.resx">
       <DependentUpon>Tracker.cs</DependentUpon>
@@ -3520,6 +3522,7 @@
     <Content Include="acsimplepids.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="activecf.h" />
     <Content Include="aircraft.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -3607,9 +3610,23 @@
     <Content Include="aircraft\Rascal\thumbnail.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="amaudio.h" />
+    <Content Include="amparse.h" />
+    <Content Include="amstream.h" />
+    <Content Include="amva.h" />
+    <Content Include="Amvideo.h" />
     <Content Include="ArduCopterConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="atsmedia.h" />
+    <Content Include="audevcod.h" />
+    <Content Include="austream.h" />
+    <Content Include="aviriff.h" />
+    <Content Include="basetsd.h" />
+    <Content Include="bdaiface.h" />
+    <Content Include="bdamedia.h" />
+    <Content Include="Bdatif.h" />
+    <Content Include="bdatypes.h" />
     <Content Include="camerasBuiltin.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -3619,6 +3636,39 @@
     <Content Include="checklistDefault.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="comlite.h" />
+    <Content Include="control.h" />
+    <Content Include="d3d.h" />
+    <Content Include="d3d8.h" />
+    <Content Include="d3d8caps.h" />
+    <Content Include="d3d8types.h" />
+    <Content Include="d3dcaps.h" />
+    <Content Include="d3drm.h" />
+    <Content Include="d3drmdef.h" />
+    <Content Include="d3drmobj.h" />
+    <Content Include="d3drmwin.h" />
+    <Content Include="d3dtypes.h" />
+    <Content Include="d3dvec.inl" />
+    <Content Include="d3dx.h" />
+    <Content Include="d3dx8.h" />
+    <Content Include="d3dx8core.h" />
+    <Content Include="d3dx8effect.h" />
+    <Content Include="d3dx8math.h" />
+    <Content Include="d3dx8math.inl" />
+    <Content Include="d3dx8mesh.h" />
+    <Content Include="d3dx8shape.h" />
+    <Content Include="d3dx8tex.h" />
+    <Content Include="d3dxcore.h" />
+    <Content Include="d3dxerr.h" />
+    <Content Include="d3dxmath.h" />
+    <Content Include="d3dxmath.inl" />
+    <Content Include="d3dxshapes.h" />
+    <Content Include="d3dxsprite.h" />
+    <Content Include="ddraw.h" />
+    <Content Include="ddrawex.h" />
+    <Content Include="ddstream.h" />
+    <Content Include="dinput.h" />
+    <Content Include="dinputd.h" />
     <Content Include="DLLs\fftpack_lite.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -3643,6 +3693,52 @@
     <Content Include="DLLs\NumpyDotNet.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="dls1.h" />
+    <Content Include="dls2.h" />
+    <Content Include="dmdls.h" />
+    <Content Include="dmerror.h" />
+    <Content Include="dmksctrl.h" />
+    <Content Include="dmo.h" />
+    <Content Include="dmodshow.h" />
+    <Content Include="dmoimpl.h" />
+    <Content Include="dmoreg.h" />
+    <Content Include="dmort.h" />
+    <Content Include="dmplugin.h" />
+    <Content Include="dmusbuff.h" />
+    <Content Include="dmusicc.h" />
+    <Content Include="dmusicf.h" />
+    <Content Include="dmusici.h" />
+    <Content Include="dmusics.h" />
+    <Content Include="dpaddr.h" />
+    <Content Include="dplay.h" />
+    <Content Include="dplay8.h" />
+    <Content Include="dplobby.h" />
+    <Content Include="dplobby8.h" />
+    <Content Include="dsetup.h" />
+    <Content Include="DShow.h" />
+    <Content Include="dshowasf.h" />
+    <Content Include="dsound.h" />
+    <Content Include="dv.h" />
+    <Content Include="dvdevcod.h" />
+    <Content Include="dvdmedia.h" />
+    <Content Include="dvoice.h" />
+    <Content Include="dvp.h" />
+    <Content Include="dx7todx8.h" />
+    <Content Include="dxerr8.h" />
+    <Content Include="dxfile.h" />
+    <Content Include="dxsdk.inc" />
+    <Content Include="dxtrans.h" />
+    <Content Include="dxva.h" />
+    <Content Include="edevdefs.h" />
+    <Content Include="errors.h" />
+    <Content Include="evcode.h" />
+    <Content Include="il21dec.h" />
+    <Content Include="Iwstdec.h" />
+    <Content Include="ks.h" />
+    <Content Include="ksguid.h" />
+    <Content Include="ksmedia.h" />
+    <Content Include="ksproxy.h" />
+    <Content Include="ksuuids.h" />
     <Content Include="LogAnalyzer\DataflashLog.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -3706,6 +3802,33 @@
     <Content Include="LogAnalyzer\UnitTest.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="mediaerr.h" />
+    <Content Include="mediaobj.h" />
+    <Content Include="medparam.h" />
+    <Content Include="mmstream.h" />
+    <Content Include="mpconfig.h" />
+    <Content Include="mpegtype.h" />
+    <Content Include="Mstvca.h" />
+    <Content Include="Mstve.h" />
+    <Content Include="Msvidctl.h" />
+    <Content Include="multimon.h" />
+    <Content Include="playlist.h" />
+    <Content Include="qedit.h" />
+    <Content Include="qnetwork.h" />
+    <Content Include="regbag.h" />
+    <Content Include="rmxfguid.h" />
+    <Content Include="rmxftmpl.h" />
+    <Content Include="Segment.h" />
+    <Content Include="strmif.h" />
+    <Content Include="tune.h" />
+    <Content Include="tuner.h" />
+    <Content Include="uuids.h" />
+    <Content Include="vfwmsgs.h" />
+    <Content Include="videoacc.h" />
+    <Content Include="vpconfig.h" />
+    <Content Include="vpnotify.h" />
+    <Content Include="vptype.h" />
+    <Content Include="xprtdefs.h" />
     <None Include="Resources\Parachute.png" />
     <None Include="Resources\zhHans.txt" />
     <Content Include="LogAnalyzer\VehicleType.py">
